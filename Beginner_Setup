@@ -1,0 +1,96 @@
+Raspberry Pi beginner setup
+===========================
+
+Headless display
+----------------
+1. Get a new SD card
+2. Use Win32DiskImager from Window OS to burn disk image into SD card
+3. Connect HDMI display
+	user: pi
+	pw: raspberry
+4. Execute:
+	sudo raspi-config
+5. Move to Network Options -> Wi-fi
+6. Enter SSID and password
+7. Move to Interface Options -> VNC
+8. Enable VNC
+9. Connect headless to monitor via IP
+
+Add or remove program
+---------------------
+1. Update and upgrade
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get dist-upgrade
+
+2. Install a program
+	sudo apt-get install appname
+
+3. Remove a program
+	sudo apt-get purge remove appname
+	sudo apt-get autoremove
+
+4. Open text file with super user
+	sudo nano filename
+
+Wireless network
+----------------
+1. Locate .conf
+	cd /etc/wpa_supplicant
+
+2. Open text editor
+	sudo nano wpa_supplicant.conf
+
+3. Add network format
+	network={
+        	ssid="network_name"
+        	psk="network_password"
+        	key_mgmt=WPA-PSK
+	}
+
+Python 3
+--------
+1. To install packages from apt
+	sudo apt-get install python3-packagename
+
+2. To install packages from Pypy
+	sudo pip3 install packagename
+
+3. For working with Pillow package
+	sudo pip3 install Pillow
+
+4. For Pillow.Image.show(), we need imagemagick (no need)
+	sudo apt-get install imagemagick
+
+5. For working with DHT22 temperature and humidity sensor
+	sudo pip3 install Adafruit_DHT
+
+6. For converting h264 to mp4, we need MP4Box
+	sudo apt-get install -y gpac
+
+Python libraries
+----------------
+- For time delay
+	from time import sleep
+
+- For pausing script
+	from signal import pause
+
+- To work with camera
+	from picamera import PiCamera
+
+- To work with image
+	from PIL import Image
+
+- To work with date and time
+	import datetime
+
+- To work with GPIO
+	import RPi.GPIO as GPIO # For reset all pins
+	import gpiozero # For utilities
+
+- Release all peripherals after use
+	try:
+	finally:
+		object.close()
+		GPIO.cleanup()
